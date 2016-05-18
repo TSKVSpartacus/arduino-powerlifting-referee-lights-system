@@ -45,7 +45,7 @@ const int buzzerPin = 7;
 
 // Configuration
 const int buzzerLength = 700; // length of the buzzer in ms, the last referee is unable to declare its judgement during this time if buzzimmediately = 1:
-const int buzzimmediately = 1; // 1 = yes, as per IPF rules; 0 = only after all referees made a judgment
+const int buzzimmediately = 0; // 1 = yes, as per IPF rules; 0 = only after all referees made a judgment
 long interval = 15000; // time after when to reset in ms
 
 //
@@ -105,7 +105,7 @@ void setup() {
   pinMode(lightthreeredPin, OUTPUT);
   
   // test all lights
-  lights(1,1,1,1,1,1);
+  lights(HIGH,HIGH,HIGH,HIGH,HIGH,HIGH);
   delay(2000);
 
   // turn all lights off
@@ -204,10 +204,10 @@ void lights(char onewhite, char onered, char headwhite, char headred, char three
 }
 
 char lightmode(char state) { // 1 is on; 0 is off
-  if (state == 1) { return LOW; } // LOW is on for our relays
-  if (state == 0) { return HIGH; }
+  //if (state == 1) { return LOW; } // LOW is on for our relays
+  //if (state == 0) { return HIGH; }
   if (state == HIGH) { return LOW; }
-  if (state == NULL) { return HIGH; } // if variable not set
+  //if (state == NULL) { return HIGH; } // if variable not set
   else { return HIGH; }
 }
 
@@ -240,7 +240,7 @@ void serialmessage(char onewhite, char onered, char headwhite, char headred, cha
 }
 
 void reset() {
-  lights(0,0,0,0,0,0);
+  lights(LOW,LOW,LOW,LOW,LOW,LOW);
   
   numrefchoices = 0;
   numredlights = 0;
